@@ -21,6 +21,7 @@ along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 from eve import Eve
 from flask import request
 import os
+import atis
 
 app = Eve()
 
@@ -34,14 +35,11 @@ else:
     host = '0.0.0.0'
     debug = True
 
-@app.route('/generate/<string:airport>')
-def generate(airport):
-
-    metar = request.args['metar']
-    arrrwy = request.args['arrrwy']
-    letter = request.args['letter']
-
-    return '[' + airport + 'info]' + letter + '[runway in use]' + arrrwy + '[endof][' + airport + '][atis]' + letter
+@app.route('/generate')
+def generate():
+    return atis.generateATIS(request.args['metar'],
+                             request.args['arrrwy'],
+                             request.args['letter'])
 
 if __name__ == '__main__':
 	app.run(host=host, port=port, debug=debug)
