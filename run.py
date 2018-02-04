@@ -33,5 +33,9 @@ else:
     host = '0.0.0.0'
     debug = True
 
+@app.route('/generate')
+def generate():
+    return 'It works!'
+
 if __name__ == '__main__':
 	app.run(host=host, port=port, debug=debug)
