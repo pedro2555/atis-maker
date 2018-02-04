@@ -48,7 +48,7 @@ default = {
         'end': 'endof', ## filename for 'end of'
         'atis': 'atis' ## filename for 'atis'
     },
-    'format': '[info]lettermetar.time[approach_type][runway_in_use]arrrwy[transition_level][end][ident]letter'
+    'format': '[info]lettermetar.time[approach_type][runway_in_use]arrrwy[transition_level][end][ident][atis]letter'
 }
 
 airports = {
