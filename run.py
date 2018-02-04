@@ -41,7 +41,7 @@ def generate(airport):
     arrrwy = request.args['arrrwy']
     letter = request.args['letter']
 
-    return '[' + airport + 'info] ' + letter + '[runway in use] ' + arrrwy + ' [endof] [' + airport + '] [atis] ' + letter
+    return '[' + airport + 'info]' + letter + '[runway in use]' + arrrwy + '[endof][' + airport + '][atis]' + letter
 
 if __name__ == '__main__':
 	app.run(host=host, port=port, debug=debug)
