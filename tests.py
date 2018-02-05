@@ -18,28 +18,16 @@ You should have received a copy of the GNU General Public License
 along with ATIS Maker.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from eve import Eve
-from flask import request
-import os
-import atis
+from string import Template
 
-app = Eve()
+class AtisTemplate(Template):
+    delimiter='$atis'
 
-# Heroku support: bind to PORT if defined, otherwise default to 5000.
-if 'PORT' in os.environ:
-    port = int(os.environ.get('PORT'))
-    host = '0.0.0.0'
-    debug = False
-else:
-    port = 5000
-    host = '0.0.0.0'
-    debug = True
+class MetarTemplate(Template):
+    delimiter='$metar'
 
-@app.route('/generate')
-def generate():
-    return atis.generateATIS(request.args['metar'],
-                             request.args['arrrwy'],
-                             request.args['letter'])
-
-if __name__ == '__main__':
-	app.run(host=host, port=port, debug=debug)
+template = Template('This is $metar{station} information $atis{letter} time $metar{time}')
+template.delimiter='$metar'
+print(template)
+template = Template(template.safe_substitute(station='LPPT',time='0530'))
+print(template.safe_substitute(letter='A'))
